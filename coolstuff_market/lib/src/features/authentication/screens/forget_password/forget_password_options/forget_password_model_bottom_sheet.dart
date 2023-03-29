@@ -1,10 +1,10 @@
 
 import 'package:coolstuff_market/src/constants/text.dart';
-import 'package:coolstuff_market/src/features/screens/screens/forget_password/forget_password_mail/forget_password_mail.dart';
-import 'package:coolstuff_market/src/features/screens/screens/forget_password/forget_password_options/forget_password_btn_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../../constants/sizes.dart';
+import '../forget_password_mail/forget_password_mail.dart';
+import 'forget_password_btn_widget.dart';
 class ForgetPasswordScreen{
 
   static Future<dynamic> buildShowModalBottomSheet(BuildContext context) {

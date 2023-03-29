@@ -1,9 +1,15 @@
-import 'package:coolstuff_market/src/features/screens/screens/login/login_screen.dart';
-import 'package:coolstuff_market/src/features/screens/screens/welcome/welcome_screen.dart';
+import 'package:coolstuff_market/firebase_options.dart';
+import 'package:coolstuff_market/src/repository/authentication/authentication_repository.dart';
 import 'package:coolstuff_market/src/utils/themes/theme.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'features/authentication/screens/welcome/welcome_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then((value) => Get.put(AuthenticationRepository()));
   runApp(const App());
 }
 
@@ -12,7 +18,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return  GetMaterialApp(
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
       themeMode: ThemeMode.system,

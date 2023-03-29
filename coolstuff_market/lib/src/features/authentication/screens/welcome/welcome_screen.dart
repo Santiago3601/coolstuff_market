@@ -2,11 +2,13 @@ import 'package:coolstuff_market/src/constants/images.dart';
 import 'package:coolstuff_market/src/constants/sizes.dart';
 import 'package:coolstuff_market/src/constants/text.dart';
 import 'package:coolstuff_market/src/features/authentication/screens/signup/signup_screen.dart';
-import 'package:coolstuff_market/src/features/screens/screens/login/login_screen.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../constants/colors.dart';
 import 'package:get/get.dart';
+
+import '../../../authentication/screens/login/login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
