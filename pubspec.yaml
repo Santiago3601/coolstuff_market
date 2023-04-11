@@ -1,0 +1,66 @@
+name: coolstuff_market
+description: A new Flutter project.
+
+
+publish_to: 'none' 
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.2 <3.0.0'
+
+
+
+
+
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  cached_network_image: ^3.1.0
+  bubble: ^1.1.9+1
+  get: ^4.6.5
+  liquid_swipe: ^3.0.0
+  smooth_page_indicator: ^1.0.0+2
+  google_fonts: ^4.0.3
+  flutter_native_splash: ^2.2.19
+  firebase_core: ^2.8.0
+  firebase_auth: ^4.3.0
+  get_storage: ^2.0.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+flutter_lints: ^2.0.0
+
+flutter_native_splash:
+  color: "#FFFFFF"
+  dark_color: "#000000"
+  image: assets/images/cool_stuff_light.png
+  dark_image: assets/images/cool_stuff_dark.png
+
+  android_12:
+    image: assets/images/cool_stuff_light.png
+    icon_background_color: "#FFFFFF"
+    image_dark: assets/images/cool_stuff_dark.png
+    icon_background_color_dark: "#000000"
+
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/books.png
+    - assets/images/cool_stuff_dark.png
+    - assets/images/cool_stuff_light.png
+    - assets/images/welcome_images/welcome-screen-image.png
+    - assets/logo/google-logo.png
+    - assets/images/forget_password/forget-password.png
+    - assets/images/estrella-icon.png
+    - assets/images/icon-usuario.png
+    - assets/images/whatsapp-icon.png
+    - assets/images/producto1.png
+    - assets/images/productos/
+    - assets/images/profile/mujer1.jpg
