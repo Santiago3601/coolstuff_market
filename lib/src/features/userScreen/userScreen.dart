@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:coolstuff_market/src/constants/images.dart';
 import 'package:coolstuff_market/src/features/userScreen/userScreen.dart';
+import 'package:flutter_native_splash/cli_commands.dart';
+import '../blockUser/denuncia.dart';
 
 class UserScreen extends StatelessWidget {
   @override
@@ -16,7 +18,8 @@ class UserScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: EdgeInsets.all(10), // Ajusta el valor del padding según sea necesario
+                padding: EdgeInsets.all(
+                    10), // Ajusta el valor del padding según sea necesario
                 child: Image(
                   image: AssetImage(tUserIcon),
                   width: 100,
@@ -269,6 +272,23 @@ class UserScreen extends StatelessWidget {
                   // Lógica para compartir
                 },
                 child: Text('Ver más productos'),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(10),
+            child: SizedBox(
+              width: 180,
+              height: 35,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Denunciar()),
+              );
+                },
+                child: Text('Denunciar'),
+                style: ElevatedButton.styleFrom(primary: Colors.red)
               ),
             ),
           )
