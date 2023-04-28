@@ -78,6 +78,40 @@ class NewPostScreen extends StatelessWidget {
             ],
           ),
           SizedBox(height: 16),
+          Padding(
+            padding: EdgeInsets.all(10),
+            child: SizedBox(
+              width: 300,
+              height: 40,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Lógica para compartir
+                },
+                child: Text('Seleccionar imagen'),
+                style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 98, 105, 98), // Establecer el color de fondo a verde
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 5),
+          Padding(
+            padding: EdgeInsets.all(10),
+            child: SizedBox(
+              width: 300,
+              height: 40,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Lógica para compartir
+                },
+                child: Text('Subir imagen'),
+                style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 98, 105, 98), // Establecer el color de fondo a verde
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
