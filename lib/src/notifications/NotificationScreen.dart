@@ -21,6 +21,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
         title: '¿Aún estás vendiendo este producto?',
         description: 'Verifica si aún estás vendiendo este producto para mantenerlo al día',
         imagePath: 'assets/images/productos/saco1.jpg'), // Cambiar ruta de la imagen aquí
+   
   ];
 
   @override
