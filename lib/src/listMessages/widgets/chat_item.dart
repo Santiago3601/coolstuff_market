@@ -9,7 +9,7 @@ class ChatItem extends StatelessWidget {
       leading: CircleAvatar(
         radius: 25,
         backgroundImage: AssetImage(
-          '/assets/images/profile/mujer1.jpg', // Cambia esta URL por la de la imagen de perfil deseada
+          '/assets/images/profile/mujer2.jpg', // Cambia esta URL por la de la imagen de perfil deseada
         ),
       ),
       title: Text('Mikel Arroyave'),
