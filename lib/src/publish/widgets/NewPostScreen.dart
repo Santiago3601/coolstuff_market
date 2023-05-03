@@ -3,6 +3,8 @@ import 'buildTextField.dart';
 import '../../productos_main/dashb.dart';
 
 class NewPostScreen extends StatelessWidget {
+  List<String> categoriasList= ['Electrónicos', 'Ropa', 'Hogar', 'Deportes'];
+List<String> estadosList = ['Nuevo', 'Usado', 'Reacondicionado'];
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(16),
@@ -33,8 +35,13 @@ class NewPostScreen extends StatelessWidget {
           SizedBox(height: 10),
           buildTextField('Título'),
           buildTextField('Precio'),
-          buildTextField('Categoría'),
-          buildTextField('Estado'),
+buildDropdownTextField('Categoría', categoriasList, (value) {
+  // Hacer algo con el valor seleccionado
+}),
+
+buildDropdownTextField('Estado', estadosList, (value) {
+  // Hacer algo con el valor seleccionado
+}),
           buildTextField('Descripción'),
           SizedBox(height: 16),
           Row(
