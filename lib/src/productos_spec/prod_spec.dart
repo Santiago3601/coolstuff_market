@@ -16,24 +16,31 @@ class prod_spec extends StatelessWidget {
       elevation: 0,
     ),
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              ImageContainer(),
-              TextFormFieldContainer(),
-              Container(
-                width: 400.0, // establecer ancho
-                height: 20.0, // establecer altura
-                color: Color.fromARGB(255, 255, 255, 255), // color de fondo
-              ),
-              TextContainer(),
-               Container(
-                width: 400.0, // establecer ancho
-                height: 20.0, // establecer altura
-                color: Color.fromARGB(255, 255, 255, 255), // color de fondo
-              ),
-              SellerDetails(),
-              //SellerLocation(),
-            ],
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              
+              children: [
+                ImageContainer(),
+                Padding(
+                  padding: EdgeInsets.only(left:10,right:10),
+                  child: TextFormFieldContainer(),
+                ),
+                Container(
+                  width: 400.0, // establecer ancho
+                  height: 20.0, // establecer altura
+                  color: Color.fromARGB(255, 255, 255, 255), // color de fondo
+                ),
+                TextContainer(),
+                 Container(
+                  width: 400.0, // establecer ancho
+                  height: 20.0, // establecer altura
+                  color: Color.fromARGB(255, 255, 255, 255), // color de fondo
+                ),
+                SellerDetails(),
+                //SellerLocation(),
+              ],
+            ),
           ),
         ),
       ),
