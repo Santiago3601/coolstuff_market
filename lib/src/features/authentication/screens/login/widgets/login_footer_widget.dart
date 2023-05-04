@@ -1,5 +1,6 @@
 import 'package:coolstuff_market/src/constants/images.dart';
 import 'package:coolstuff_market/src/constants/text.dart';
+import 'package:coolstuff_market/src/features/authentication/screens/signup/signup_screen.dart';
 import 'package:coolstuff_market/src/features/userScreen/userScreen.dart';
 import 'package:coolstuff_market/src/productos_main/dashb.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,7 +32,13 @@ class LoginFooterWidget extends StatelessWidget {
         ),
         const SizedBox(height: tFormHeight - 20),
         TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const SignUpScreen()),
+              );
+            },
             child: Text.rich(TextSpan(
                 text: tDontHaveAnAccount,
                 style: Theme.of(context).textTheme.bodyText1,

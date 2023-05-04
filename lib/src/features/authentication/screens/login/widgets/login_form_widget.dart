@@ -1,9 +1,13 @@
 import 'package:coolstuff_market/src/constants/colors.dart';
 import 'package:coolstuff_market/src/constants/text.dart';
+import 'package:coolstuff_market/src/features/authentication/controllers/login_controller.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import '../../../../../constants/sizes.dart';
+import '../../../controllers/signup_controller.dart';
 import '../../forget_password/forget_password_options/forget_password_model_bottom_sheet.dart';
 
 class LoginForm extends StatelessWidget {
@@ -13,6 +17,7 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
     return Form(
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: tFormHeight - 10),
@@ -20,6 +25,7 @@ class LoginForm extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormField(
+              controller:  controller.email,
               decoration: const InputDecoration(
                   //prefixIcon: Icon(Icons.person_3_outlined),
                   labelText: tEmail,
@@ -28,6 +34,7 @@ class LoginForm extends StatelessWidget {
             ),
             const SizedBox(height: tFormHeight - 20),
             TextFormField(
+              controller:  controller.password,
               decoration: const InputDecoration(
                   //prefixIcon: Icon(Icons.password_outlined),
                   labelText: tPassword,
@@ -49,7 +56,9 @@ class LoginForm extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    LoginController.instance.loginWithEmailAndPassword(controller.email.text.trim(), controller.password.text.trim());
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: tAccentColor,
                   ),

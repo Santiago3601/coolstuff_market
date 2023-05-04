@@ -1,3 +1,4 @@
+import 'package:coolstuff_market/src/features/authentication/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../publish/publish_main.dart';
@@ -10,6 +11,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       showSelectedLabels: false,
@@ -18,10 +20,17 @@ class CustomBottomNavigationBar extends StatelessWidget {
       unselectedFontSize: 14,
       items: [
         BottomNavigationBarItem(
-          icon: Icon(
-            Icons.dehaze,
-            color: Color.fromARGB(255, 0, 48, 136),
-            size: 30,
+
+          icon: GestureDetector(
+            onTap: () {
+              LoginController.instance.logout();
+
+            },
+            child: Icon(
+              Icons.dehaze,
+              color: Color.fromARGB(255, 0, 48, 136),
+              size: 30,
+            )
           ),
           label: '',
         ),
