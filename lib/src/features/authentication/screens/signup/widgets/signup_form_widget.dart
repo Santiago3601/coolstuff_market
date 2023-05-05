@@ -1,10 +1,14 @@
+import 'dart:convert';
+
 import 'package:coolstuff_market/src/constants/colors.dart';
 import 'package:coolstuff_market/src/constants/sizes.dart';
 import 'package:coolstuff_market/src/constants/text.dart';
+import 'package:coolstuff_market/src/dto/user.dart';
 import 'package:coolstuff_market/src/features/authentication/controllers/signup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:coolstuff_market/src/utils/toast.dart';
+import 'package:http/http.dart' as http;
 
 class SignUpFormWidget extends StatelessWidget {
   const SignUpFormWidget({
@@ -91,11 +95,43 @@ class SignUpFormWidget extends StatelessWidget {
             ),
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(onPressed: () {
-                if(_formKey.currentState!.validate()){
-                  SignUpController.instance.registerUser(controller.email.text.trim(), controller.password.text.trim());
-                  // SignUpController.instance.phoneAuthentication(controller.phoneNo.text.trim());
+              child: ElevatedButton(onPressed: () async {
+
+                UserApp user = new UserApp(controller.fullname.text.trim(),
+                    int.parse(controller.phoneNo.text.trim()),
+                    controller.address.text.trim(),
+                    controller.city.text.trim(),
+                    controller.dob.text.trim(),
+                    controller.email.text.trim(),
+                    controller.password.text.trim(),
+                    "image"
+                );
+                final json =   '[ '+jsonEncode(user)+' ]';
+                var client = http.Client();
+                try {
+                  var response = await client.post(
+                      Uri.parse("https://g20205610b4f23c-n095xjpjzyja68aa.adb.us-ashburn-1.oraclecloudapps.com/ords/cool_stuft_marketplace/user/register"),
+                      body: json);
+                  // var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
+                  // var uri = Uri.parse(decodedResponse['uri'] as String);
+                  // print(await client.get(uri));
+
+                } finally {
+                  client.close();
                 }
+                SignUpController.instance.registerUser(controller.email.text.trim(), controller.password.text.trim(), user);
+
+
+
+
+
+
+                  // }else{
+                  //   flutterToast('Error al crear el usuario, por favor intente mas tarde','error');
+                  // }
+
+                  // SignUpController.instance.phoneAuthentication(controller.phoneNo.text.trim());
+
 
               },
                   style: ElevatedButton.styleFrom(
