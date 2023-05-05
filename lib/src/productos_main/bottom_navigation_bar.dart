@@ -18,14 +18,6 @@ class CustomBottomNavigationBar extends StatelessWidget {
       unselectedFontSize: 14,
       items: [
         BottomNavigationBarItem(
-          icon: Icon(
-            Icons.dehaze,
-            color: Color.fromARGB(255, 0, 48, 136),
-            size: 30,
-          ),
-          label: '',
-        ),
-        BottomNavigationBarItem(
           icon: GestureDetector(
             onTap: () {
               Navigator.push(
@@ -52,7 +44,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
             child: Icon(
               Icons.add_box,
               color: Color.fromARGB(255, 0, 48, 136),
-              size: 50,
+              size: 30,
             ),
           ),
           label: '',
