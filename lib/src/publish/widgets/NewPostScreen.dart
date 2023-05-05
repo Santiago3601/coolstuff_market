@@ -122,7 +122,11 @@ class _NewPostScreenState extends State<NewPostScreen> {
                 height: 40,
                 child: ElevatedButton(
                   onPressed: () async {
-                    //...
+                    if (imagen_to_upload == null) {
+                      return;
+                    }
+
+                    final uploaded = await uploadImage(imagen_to_upload!);
                   },
                   child: Text('Subir imagen'),
                   style: ElevatedButton.styleFrom(

@@ -4,9 +4,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 final FirebaseStorage storage = FirebaseStorage.instance;
 
-Future<bool> uploadImage( File image ) async{
-
+Future<bool> uploadImage(File image) async {
   final String namefile = image.path.split("/").last;
+  print(namefile);
 
   Reference ref = storage.ref().child("images").child(namefile);
 
@@ -14,9 +14,9 @@ Future<bool> uploadImage( File image ) async{
 
   final TaskSnapshot snapshot = await uploadTask.whenComplete(() => true);
 
-  if(snapshot.state == TaskState.success){
+  if (snapshot.state == TaskState.success) {
     return true;
-  }else{
+  } else {
     return false;
   }
 }
