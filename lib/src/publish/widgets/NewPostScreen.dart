@@ -127,6 +127,16 @@ class _NewPostScreenState extends State<NewPostScreen> {
                     }
 
                     final uploaded = await uploadImage(imagen_to_upload!);
+
+                    if (uploaded) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("Imagen subida correctamente"),
+                      ));
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("Error al subir la imagen"),
+                      ));
+                    }
                   },
                   child: Text('Subir imagen'),
                   style: ElevatedButton.styleFrom(
