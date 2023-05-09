@@ -104,7 +104,7 @@ class SignUpFormWidget extends StatelessWidget {
                     controller.dob.text.trim(),
                     controller.email.text.trim(),
                     controller.password.text.trim(),
-                    "image"
+                    "image",""
                 );
                 final json =   '[ '+jsonEncode(user)+' ]';
                 var client = http.Client();

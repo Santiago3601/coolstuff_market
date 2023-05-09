@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../../../../constants/sizes.dart';
+import 'package:coolstuff_market/src/utils/globals.dart' as globals;
 import '../../../controllers/signup_controller.dart';
 import '../../forget_password/forget_password_options/forget_password_model_bottom_sheet.dart';
 
@@ -57,6 +58,7 @@ class LoginForm extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                   onPressed: () {
+                    globals.userMail=controller.email.text.trim();
                     LoginController.instance.loginWithEmailAndPassword(controller.email.text.trim(), controller.password.text.trim());
                   },
                   style: ElevatedButton.styleFrom(
