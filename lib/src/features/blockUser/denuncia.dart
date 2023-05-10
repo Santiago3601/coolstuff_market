@@ -1,9 +1,28 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, deprecated_member_use
-
+import 'dart:io';
+import 'package:coolstuff_market/src/features/blockUser/services/select_image.dart';
+import 'package:coolstuff_market/src/features/blockUser/services/upload_image.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:coolstuff_market/firebase_options.dart';
 
-class Denunciar extends StatelessWidget {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  runApp(Denunciar());
+}
+
+class Denunciar extends StatefulWidget {
   const Denunciar({super.key});
+
+  @override
+  State<Denunciar> createState() => _Denunciar();
+}
+
+class _Denunciar extends State<Denunciar> {
+  File? imagen_to_upload;
 
   @override
   Widget build(BuildContext context) {
@@ -49,14 +68,44 @@ class Denunciar extends StatelessWidget {
               ),
               SizedBox(height: 16),
               ElevatedButton(
-                onPressed: null,
+                onPressed: () async {
+                  final imagen = await getImage();
+                  setState(() {
+                    imagen_to_upload = File(imagen!.path);
+                  });
+                },
                 child: Row(
                   children: [
                     Builder(builder: (context) {
                       return Icon(Icons.attach_file);
                     }),
                     SizedBox(width: 8),
-                    Text('Agregar archivo'),
+                    Text('Seleccionar archivo'),
+                  ],
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  if (imagen_to_upload == null) {
+                    return;
+                  }
+                  final uploaded = await uploadImage(imagen_to_upload!);
+
+                  if (uploaded) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Archivo subido.")));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("Error en subida de archivo.")));
+                  }
+                },
+                child: Row(
+                  children: [
+                    Builder(builder: (context) {
+                      return Icon(Icons.upload_file);
+                    }),
+                    SizedBox(width: 8),
+                    Text('Subir archivo'),
                   ],
                 ),
               ),
@@ -72,7 +121,7 @@ class Denunciar extends StatelessWidget {
               ),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: null,
+                onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   primary: Colors.blue,
                 ),
