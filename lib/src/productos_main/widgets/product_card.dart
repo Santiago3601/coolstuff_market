@@ -16,55 +16,71 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey,
       padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(
+          color: Colors.grey,
+        ),
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              for (int i = 0; i < 3; i++)
-                Image.asset(
-                  imagePath,
-                  height: 105,
-                  width: 105,
-                  fit: BoxFit.cover,
-                ),
-              Container(
-                width: 40.0,
-                height: 40.0,
-                decoration: ShapeDecoration(
-                  color: borderColor,
-                  shape: CircleBorder(),
-                ),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    primary: borderColor,
+              Image.asset(
+                imagePath,
+                height: 180,
+                width: 180,
+                fit: BoxFit.cover,
+              ),
+              Column(
+                children: [
+                  Container(
+                    width: 40.0,
+                    height: 40.0,
+                    decoration: ShapeDecoration(
+                      color: borderColor,
+                      shape: CircleBorder(),
+                    ),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        primary: borderColor,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => prod_spec()),
+                        );
+                      },
+                      child: const Icon(
+                        Icons.add,
+                        color: Colors.white,
+                        size: 30.0,
+                      ),
+                    ),
                   ),
-                  onPressed: () {
-                     Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => prod_spec()),
-            );
-                  },
-                  child: const Icon(
-                    Icons.add,
-                    color: Colors.white,
-                    size: 30.0,
+                  Text(
+                    'Ver más',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.blue[900],
+                    ),
                   ),
-                ),
+                ],
               ),
             ],
           ),
+          SizedBox(height: 24),
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
               productTitle,
               style: TextStyle(
-                fontSize: 18,
-                color: Colors.white,
+                fontSize: 26,
+                color: Colors.blue[900],
                 fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.left,

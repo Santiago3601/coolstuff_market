@@ -7,7 +7,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text('Mensajes'),
+      title: Text('Mensajes', style: TextStyle(color: Color.fromARGB(255, 2, 59, 105))),
       centerTitle: true,
       leading: GestureDetector(
         onTap: () {
@@ -15,12 +15,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         },
         child: Row(
           children: [
-            Icon(Icons.arrow_back),
+            Icon(Icons.arrow_back, color: Color.fromARGB(255, 2, 59, 105)),
             SizedBox(width: 2),
-            Text('Atrás'),
           ],
         ),
       ),
+      backgroundColor: Colors.white,
     );
   }
 }

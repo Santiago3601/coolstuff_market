@@ -1,19 +1,10 @@
-import 'dart:io';
-
-import 'package:coolstuff_market/src/services/upload_image.dart';
 import 'package:flutter/material.dart';
-import '../../services/select_image.dart';
 import 'buildTextField.dart';
 import '../../productos_main/dashb.dart';
 
-class NewPostScreen extends StatefulWidget {
-  @override
-  State<NewPostScreen> createState() => _NewPostScreenState();
-}
-
-class _NewPostScreenState extends State<NewPostScreen> {
-  File? imagen_to_upload;
-
+class NewPostScreen extends StatelessWidget {
+  List<String> categoriasList= ['Electrónicos', 'Ropa', 'Hogar', 'Deportes'];
+List<String> estadosList = ['Nuevo', 'Usado', 'Reacondicionado'];
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(16),
@@ -44,93 +35,54 @@ class _NewPostScreenState extends State<NewPostScreen> {
           SizedBox(height: 10),
           buildTextField('Título'),
           buildTextField('Precio'),
-          buildTextField('Categoría'),
-          buildTextField('Estado'),
+buildDropdownTextField('Categoría', categoriasList, (value) {
+  // Hacer algo con el valor seleccionado
+}),
+
+buildDropdownTextField('Estado', estadosList, (value) {
+  // Hacer algo con el valor seleccionado
+}),
           buildTextField('Descripción'),
           SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Flexible(
-                child: GestureDetector(
-                  onTap: () {},
-                  child: imagen_to_upload != null
-                      ? Image.file(imagen_to_upload!)
-                      : Container(
-                          width: MediaQuery.of(context).size.width - 32,
-                          height: 120,
-                          padding: EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 211, 211, 211),
-                            border: Border.all(
-                                color: Color.fromRGBO(172, 172, 172, 1)),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.camera_alt,
-                                size: 45,
-                                color: Color.fromRGBO(
-                                    30, 144, 255, 1), // Color azul rey
-                              ),
-                              Text(
-                                'Agrega Fotos',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromRGBO(
-                                      30, 144, 255, 1), // Color azul rey
-                                ),
-                              ),
-                            ],
-                          ),
+              GestureDetector(
+                onTap: () {
+                  print('abre camara');
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width - 32,
+                  height: 120,
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 211, 211, 211),
+                    border: Border.all(color: Color.fromRGBO(172, 172, 172, 1)),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.camera_alt,
+                        size: 45,
+                        color:
+                            Color.fromRGBO(30, 144, 255, 1), // Color azul rey
+                      ),
+                      Text(
+                        'Agrega Fotos',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color:
+                              Color.fromRGBO(30, 144, 255, 1), // Color azul rey
                         ),
+                      ),
+                    ],
+                  ),
                 ),
               )
             ],
-          ),
-          SizedBox(height: 5),
-          Center(
-            child: Padding(
-              padding: EdgeInsets.all(10),
-              child: SizedBox(
-                width: 300,
-                height: 40,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    final imagen = await getImage();
-                    setState(() {
-                      imagen_to_upload = File(imagen!.path);
-                    });
-                  },
-                  child: Text('Seleccionar imagen'),
-                  style: ElevatedButton.styleFrom(
-                    primary: Color.fromARGB(255, 98, 105, 98),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(height: 5),
-          Center(
-            child: Padding(
-              padding: EdgeInsets.all(10),
-              child: SizedBox(
-                width: 300,
-                height: 40,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    //...
-                  },
-                  child: Text('Subir imagen'),
-                  style: ElevatedButton.styleFrom(
-                    primary: Color.fromARGB(255, 98, 105, 98),
-                  ),
-                ),
-              ),
-            ),
           ),
           SizedBox(height: 16),
           Row(
@@ -163,6 +115,7 @@ class _NewPostScreenState extends State<NewPostScreen> {
                   primary: Colors.green,
                 ),
               ),
+              
             ],
           ),
         ],
