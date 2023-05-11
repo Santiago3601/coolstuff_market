@@ -15,7 +15,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
       appBar: CustomAppBar(),
       body: Column(
         children: [
-          SearchBar(),
+          // SearchBar(),
           Expanded(
             child: ListView.builder(
               itemCount: 10,

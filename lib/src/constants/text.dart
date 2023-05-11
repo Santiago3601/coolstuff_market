@@ -8,12 +8,15 @@ const String tAddress = "Address";
 const String tCity = "City";
 const String tDOB = "DOB";
 const String tSignup = "Signup";
+const String tUpdate = "Actualizar";
 const String tPhoneNo = "Phone No";
 const String tPassword = "Password";
+const String tComment = "Comment";
 const String tFullName = "Full Name";
 const String tForgetPassword = "Forget Password";
 const String tSignInWithGoogle = "Sign-In with Google";
-
+const String tstartPathFirestorage ="https://firebasestorage.googleapis.com/v0/b/sign-in-8b325.appspot.com/o/images%2F";
+const String tendPathFirestorage ="?alt=media";
 
 // -- Splash Screen Text
 const String tAppName = ".appable/";
@@ -61,3 +64,6 @@ const String tForgetPhoneSubTitle = "Enter your registered Phone No to receive O
 
 // -- Forget Password Via E-Mail - Text
 const String tForgetMailSubTitle = "Enter your registered E-Mail to receive OTP";
+
+// -- Edit Form
+const String tUpdateProfileHeader = "Editar perfíl.";

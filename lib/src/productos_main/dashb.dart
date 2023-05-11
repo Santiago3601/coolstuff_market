@@ -1,4 +1,7 @@
+import 'package:coolstuff_market/src/features/authentication/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'widgets/search_bar_widget.dart';
 import 'widgets/product_card.dart';
 import 'bottom_navigation_bar.dart';
@@ -11,6 +14,7 @@ class dashb extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
     List<ProductCard> products = [
       const ProductCard(
           imagePath: 'assets/images/productos/cafe1.png',
@@ -66,7 +70,7 @@ class dashb extends StatelessWidget {
         ),
         body: Column(
           children: [
-            const SearchBar(),
+            // const SearchBar(),
             Expanded(
               child: ListView.builder(
                 itemCount: products.length,
@@ -119,6 +123,7 @@ class dashb extends StatelessWidget {
       break;
     case 'Cerrar Sesión':
       // Acción para cerrar sesión
+      LoginController.instance.logout();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Se ha cerrado la sesión'),

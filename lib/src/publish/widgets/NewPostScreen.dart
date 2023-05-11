@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:coolstuff_market/src/dto/imageUploadState.dart';
 import 'package:coolstuff_market/src/services/upload_image.dart';
 import 'package:flutter/material.dart';
 import '../../services/select_image.dart';
@@ -132,10 +133,8 @@ class _NewPostScreenState extends State<NewPostScreen> {
                     if (imagen_to_upload == null) {
                       return;
                     }
-
-                    final uploaded = await uploadImage(imagen_to_upload!);
-
-                    if (uploaded) {
+                      ImageUploadState uploaded = await uploadImage(imagen_to_upload!);
+                    if (uploaded.state()) {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text("Imagen subida correctamente"),
                       ));
@@ -144,7 +143,10 @@ class _NewPostScreenState extends State<NewPostScreen> {
                         content: Text("Error al subir la imagen"),
                       ));
                     }
+
+                    print("The path is: " + uploaded.path());
                   },
+
                   child: Text('Subir imagen'),
                   style: ElevatedButton.styleFrom(
                     primary: Color.fromARGB(255, 98, 105, 98),

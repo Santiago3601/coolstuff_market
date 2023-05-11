@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:coolstuff_market/src/utils/toast.dart';
 import 'package:http/http.dart' as http;
+import 'package:coolstuff_market/src/utils/globals.dart' as globals;
+import 'package:intl/intl.dart';
 
 class SignUpFormWidget extends StatelessWidget {
   const SignUpFormWidget({
@@ -64,13 +66,30 @@ class SignUpFormWidget extends StatelessWidget {
             const SizedBox(
               height: tFormHeight - 20,
             ),
-            TextFormField(
-              controller:  controller.dob,
-              decoration: const InputDecoration(
-                  label: Text(tDOB),
-                  prefixIcon: Icon(Icons.calendar_today_outlined)),
-            ),
-            const SizedBox(
+        TextFormField(
+          controller: controller.dob,
+          decoration: const InputDecoration(
+            label: Text(tDOB),
+            prefixIcon: Icon(Icons.calendar_today_outlined),
+          ),
+          readOnly: true,
+          onTap: () async {
+            // Show the date picker and get the selected date
+            final selectedDate = await showDatePicker(
+              context: context,
+              initialDate: DateTime.now(),
+              firstDate: DateTime(1900),
+              lastDate: DateTime.now(),
+            );
+            // Update the date text field if the user selected a date
+            if (selectedDate != null) {
+              controller.dob.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+            }
+          },
+        ),
+
+
+      const SizedBox(
               height: tFormHeight - 20,
             ),
             TextFormField(
@@ -97,7 +116,9 @@ class SignUpFormWidget extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(onPressed: () async {
 
-                UserApp user = new UserApp(controller.fullname.text.trim(),
+                UserApp user = new UserApp.noId(
+
+                    controller.fullname.text.trim(),
                     int.parse(controller.phoneNo.text.trim()),
                     controller.address.text.trim(),
                     controller.city.text.trim(),
@@ -106,12 +127,15 @@ class SignUpFormWidget extends StatelessWidget {
                     controller.password.text.trim(),
                     "image",""
                 );
-                final json =   '[ '+jsonEncode(user)+' ]';
+                final json =   jsonEncode(user);
+                print(json);
                 var client = http.Client();
                 try {
                   var response = await client.post(
                       Uri.parse("https://g20205610b4f23c-n095xjpjzyja68aa.adb.us-ashburn-1.oraclecloudapps.com/ords/cool_stuft_marketplace/user/register"),
                       body: json);
+                  print(response.body);
+                  globals.userMail=controller.email.text.trim();
                   // var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
                   // var uri = Uri.parse(decodedResponse['uri'] as String);
                   // print(await client.get(uri));
@@ -119,7 +143,9 @@ class SignUpFormWidget extends StatelessWidget {
                 } finally {
                   client.close();
                 }
+
                 SignUpController.instance.registerUser(controller.email.text.trim(), controller.password.text.trim(), user);
+
 
 
 

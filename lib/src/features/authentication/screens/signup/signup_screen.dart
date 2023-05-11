@@ -25,7 +25,8 @@ class SignUpScreen extends StatelessWidget {
               subTitle: tSignUpSubTitle,
             ),
             SignUpFormWidget(),
-            Column(   crossAxisAlignment: CrossAxisAlignment.center,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Text("O"),
                 const SizedBox(height: tFormHeight - 20),
@@ -42,17 +43,14 @@ class SignUpScreen extends StatelessWidget {
                 const SizedBox(height: tFormHeight - 20),
                 TextButton(
                     onPressed: () {},
-                    child: Text.rich(
-                        TextSpan(
-
-                            text: tAlreadyHaveAnAccount,
-                            style: Theme.of(context).textTheme.bodyText1,
-                            children: const [
-                              TextSpan(
-                                  text: tSignup,
-                                  style: TextStyle(color: Colors.blue))
-                            ])
-                    ))
+                    child: Text.rich(TextSpan(
+                        text: tAlreadyHaveAnAccount,
+                        style: Theme.of(context).textTheme.bodyText1,
+                        children: const [
+                          TextSpan(
+                              text: tSignup,
+                              style: TextStyle(color: Colors.blue))
+                        ])))
               ],
             )
 

@@ -1,9 +1,14 @@
+import 'dart:convert';
+
+import 'package:coolstuff_market/src/dto/user.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../publish/publish_main.dart';
 import '../notifications/NotificationScreen.dart';
 import '../features/userScreen/userScreen.dart';
 import '../listMessages/list_main.dart';
+import 'package:coolstuff_market/src/utils/globals.dart' as globals;
+import 'package:http/http.dart' as http;
 
 class CustomBottomNavigationBar extends StatelessWidget {
   const CustomBottomNavigationBar({Key? key}) : super(key: key);
@@ -67,7 +72,35 @@ class CustomBottomNavigationBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: GestureDetector(
-            onTap: () {
+            onTap: () async {
+              var client = http.Client();
+              try {
+                var response = await client.get(Uri.parse(
+                    "https://g20205610b4f23c-n095xjpjzyja68aa.adb.us-ashburn-1.oraclecloudapps.com/ords/cool_stuft_marketplace/user/get-by-email/" + globals.userMail));
+                print( globals.userMail);
+                print(response.body.replaceAll("\n", ""));
+                var jsonResponse = jsonDecode(
+                    response.body.replaceAll("[", "").replaceAll("]", ""));
+                globals.ownUser = UserApp.fromJson(jsonResponse);
+                globals.myOwnProfile = true;
+
+                print(globals.ownUser);
+                print(globals.ownUser.nombre());
+                print(globals.ownUser.telefono());
+                print(globals.ownUser.fecha_nacimiento());
+                print(globals.ownUser.direccion());
+                print(globals.ownUser.ciudad());
+                print(globals.ownUser.imagen());
+                print(globals.ownUser.email());
+                print(globals.ownUser.comentario());
+
+                // UserApp user = jsonDecode(response.body.replaceAll("[", "").replaceAll("]", ""));
+                // var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
+                // var uri = Uri.parse(decodedResponse['uri'] as String);
+                // print(await client.get(uri));
+              } finally {
+                client.close();
+              }
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => UserScreen()),
