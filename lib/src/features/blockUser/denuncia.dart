@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:coolstuff_market/firebase_options.dart';
 
+import '../../dto/imageUploadState.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -37,7 +39,8 @@ class _Denunciar extends State<Denunciar> {
           ),
           title: Text('CoolStuff Market'),
         ),
-        body: Padding(
+        body:
+         Padding(
           padding: EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,14 +92,17 @@ class _Denunciar extends State<Denunciar> {
                   if (imagen_to_upload == null) {
                     return;
                   }
-                  final uploaded = await uploadImage(imagen_to_upload!);
+                  ImageUploadState uploaded =
+                      await uploadImage(imagen_to_upload!);
 
-                  if (uploaded) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("Archivo subido.")));
+                  if (uploaded.state()) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text("Imcectamente"),
+                    ));
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("Error en subida de archivo.")));
+                      content: Text("Error al subir la imagen"),
+                    ));
                   }
                 },
                 child: Row(

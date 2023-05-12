@@ -1,29 +1,31 @@
 import 'dart:io';
 
+import 'package:coolstuff_market/src/dto/imageUploadState.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
+
 final FirebaseStorage storage = FirebaseStorage.instance;
 
-Future<bool> uploadImage(File image) async {
-  print(image.path);
-  final String nameFile = image.path.split("/").last;
+Future<ImageUploadState> uploadImage(File image) async {
+  ImageUploadState res= new ImageUploadState(false,"");
+  final String namefile = image.path.split("/").last;
+  final String timestamp = DateTime.now().millisecondsSinceEpoch.toString();
+  final String auditInfo = "${timestamp}";
 
-  final Reference ref = storage.ref().child("archivos").child(nameFile);
+  final String fileNameWithAudit = "${auditInfo}_${namefile}";
+  print(fileNameWithAudit);
+  res.setPath(fileNameWithAudit);
+  Reference ref = storage.ref().child("denuncia").child(fileNameWithAudit);
+
   final UploadTask uploadTask = ref.putFile(image);
-  print(uploadTask);
 
   final TaskSnapshot snapshot = await uploadTask.whenComplete(() => true);
-  print(snapshot);
-
-  final String url = await snapshot.ref.getDownloadURL();
-  print(url);
 
   if (snapshot.state == TaskState.success) {
-    return true;
+    res.setState(true);
   } else {
-    return false;
+    res.setState(false);
   }
-
-  return false;
+  return res;
 }

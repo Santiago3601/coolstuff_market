@@ -13,7 +13,7 @@ import '../formUser/formUser.dart';
 class UserScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (globals.myOwnProfile) {
+    if (false) {
       return Scaffold(
           // appBar: AppBar(
           //   title: const Text('User Screen'),
@@ -324,7 +324,8 @@ class UserScreen extends StatelessWidget {
                     width: 180,
                     height: 35,
                     child: ElevatedButton(
-                        onPressed: () {
+                        onPressed: (
+                        ) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => Denunciar()),
