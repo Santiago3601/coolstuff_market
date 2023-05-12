@@ -35,10 +35,14 @@ class LoginForm extends StatelessWidget {
             const SizedBox(height: tFormHeight - 20),
             TextFormField(
               controller:  controller.password,
+              obscureText: true,
+              enableSuggestions: false,
+              autocorrect: false,
               decoration: const InputDecoration(
                   //prefixIcon: Icon(Icons.password_outlined),
                   labelText: tPassword,
                   hintText: tPassword,
+
                   border: UnderlineInputBorder(),
                   suffixIcon: IconButton(
                       onPressed: null, icon: Icon(Icons.remove_red_eye))),
