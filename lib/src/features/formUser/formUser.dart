@@ -32,13 +32,13 @@ class _EditUser extends State<EditUser> {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProfileUpdateController());
-    controller.fullname.text = globals.ownUser.nombre().toString();
-    controller.address.text = globals.ownUser.direccion().toString();
-    controller.city.text = globals.ownUser.ciudad().toString();
-    controller.dob.text = globals.ownUser.fecha_nacimiento().toString();
+    controller.fullname.text = globals.user.nombre().toString();
+    controller.address.text = globals.user.direccion().toString();
+    controller.city.text = globals.user.ciudad().toString();
+    controller.dob.text = globals.user.fecha_nacimiento().toString();
     controller.email.text = globals.userMail;
-    controller.photo.text = globals.ownUser.imagen().toString();
-    controller.phoneNo.text = globals.ownUser.telefono().toString();
+    controller.photo.text = globals.user.imagen().toString();
+    controller.phoneNo.text = globals.user.telefono().toString();
     if (true) {}
     return MaterialApp(
         theme: TAppTheme.lightTheme,
@@ -188,7 +188,7 @@ class _EditUser extends State<EditUser> {
                                   }
                                   //Actualización de usuario
                                   UserApp user = new UserApp.noMailOrPassword(
-                                      globals.ownUser.id(),
+                                      globals.user.id(),
                                       controller.fullname.text.trim(),
                                       int.parse(controller.phoneNo.text.trim()),
                                       controller.address.text.trim(),
@@ -204,7 +204,7 @@ class _EditUser extends State<EditUser> {
                                     response = await client.post(Uri.parse("https://g20205610b4f23c-n095xjpjzyja68aa.adb.us-ashburn-1.oraclecloudapps.com/ords/cool_stuft_marketplace/user/update"), body: json);
                                     print(response.body);
                                     print(response.statusCode);
-                                    print(globals.ownUser.id());
+                                    print(globals.user.id());
                                   } finally {
                                     client.close();
                                   }
@@ -304,9 +304,9 @@ class _EditUser extends State<EditUser> {
 
   UserApp userToShow() {
     if (globals.myOwnProfile) {
-      return globals.ownUser;
+      return globals.user;
     } else {
-      return globals.ownUser;
+      return globals.user;
     }
   }
 

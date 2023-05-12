@@ -342,9 +342,9 @@ class UserScreen extends StatelessWidget {
 
   UserApp userToShow() {
     if (globals.myOwnProfile) {
-      return globals.ownUser;
+      return globals.user;
     } else {
-      return globals.ownUser;
+      return globals.user;
     }
   }
 

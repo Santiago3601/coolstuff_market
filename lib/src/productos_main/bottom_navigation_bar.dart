@@ -81,18 +81,18 @@ class CustomBottomNavigationBar extends StatelessWidget {
                 print(response.body.replaceAll("\n", ""));
                 var jsonResponse = jsonDecode(
                     response.body.replaceAll("[", "").replaceAll("]", ""));
-                globals.ownUser = UserApp.fromJson(jsonResponse);
+                globals.user = UserApp.fromJson(jsonResponse);
                 globals.myOwnProfile = true;
 
-                print(globals.ownUser);
-                print(globals.ownUser.nombre());
-                print(globals.ownUser.telefono());
-                print(globals.ownUser.fecha_nacimiento());
-                print(globals.ownUser.direccion());
-                print(globals.ownUser.ciudad());
-                print(globals.ownUser.imagen());
-                print(globals.ownUser.email());
-                print(globals.ownUser.comentario());
+                print(globals.user);
+                print(globals.user.nombre());
+                print(globals.user.telefono());
+                print(globals.user.fecha_nacimiento());
+                print(globals.user.direccion());
+                print(globals.user.ciudad());
+                print(globals.user.imagen());
+                print(globals.user.email());
+                print(globals.user.comentario());
 
                 // UserApp user = jsonDecode(response.body.replaceAll("[", "").replaceAll("]", ""));
                 // var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;

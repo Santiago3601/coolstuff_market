@@ -1,4 +1,10 @@
+import 'dart:convert';
+
+import 'package:coolstuff_market/src/features/userScreen/userScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:coolstuff_market/src/utils/globals.dart' as globals;
+import 'package:http/http.dart' as http;
+import 'package:coolstuff_market/src/dto/user.dart';
 
 class SellerDetails extends StatelessWidget {
   @override
@@ -42,7 +48,45 @@ class SellerDetails extends StatelessWidget {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+
+                      onPressed: () async {
+                        globals.myOwnProfile = false;
+                        //TODO:
+                        //Aquí se debe asignar el ID Del vendedor que se quiere consultar los datos, no debe estar quemado
+                        globals.userId = 115;
+                        var client = http.Client();
+                        try {
+                          var response = await client.get(Uri.parse(
+                              "https://g20205610b4f23c-n095xjpjzyja68aa.adb.us-ashburn-1.oraclecloudapps.com/ords/cool_stuft_marketplace/user/get-by-id/" + globals.userId.toString()));
+                          print( globals.userMail);
+                          print(response.body.replaceAll("\n", ""));
+                          var jsonResponse = jsonDecode(
+                              response.body.replaceAll("[", "").replaceAll("]", ""));
+                          globals.user = UserApp.fromJson(jsonResponse);
+                          print(globals.user);
+                          print(globals.user.nombre());
+                          print(globals.user.telefono());
+                          print(globals.user.fecha_nacimiento());
+                          print(globals.user.direccion());
+                          print(globals.user.ciudad());
+                          print(globals.user.imagen());
+                          print(globals.user.email());
+                          print(globals.user.comentario());
+
+                          // UserApp user = jsonDecode(response.body.replaceAll("[", "").replaceAll("]", ""));
+                          // var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
+                          // var uri = Uri.parse(decodedResponse['uri'] as String);
+                          // print(await client.get(uri));
+                        } finally {
+                          client.close();
+                        }
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => UserScreen()),
+                        );
+
+                      },
                       child: Text('Enviar mensaje'),
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
