@@ -82,19 +82,24 @@ class dashb extends StatelessWidget {
     );
   }
 
-  Widget menuItem(BuildContext context, String title, IconData icon) {
-    return ListTile(
-      leading: Icon(icon),
-      title: Text(
-        title,
-        style: TextStyle(fontSize: 20),
-      ),
-      onTap: () {
-        Navigator.pop(context);
-        handleCategoryAction(context, title);
+    Widget menuItem(BuildContext context, String title, IconData icon) {
+    return Builder(
+      builder: (BuildContext innerContext) {
+        return ListTile(
+          leading: Icon(icon),
+          title: Text(
+            title,
+            style: TextStyle(fontSize: 20),
+          ),
+          onTap: () {
+            Navigator.pop(innerContext);
+            handleCategoryAction(innerContext, title);
+          },
+        );
       },
     );
   }
+
 
   Widget dividerItem() {
     return Divider(
@@ -106,16 +111,16 @@ class dashb extends StatelessWidget {
   void handleCategoryAction(BuildContext context, String title) {
   switch (title) {
     case 'Electrónicos':
-      // Acción para la categoría Electrónicos
+      
       break;
     case 'Ropa':
-      // Acción para la categoría Ropa
+      
       break;
     case 'Hogar':
-      // Acción para la categoría Hogar
+      
       break;
     case 'Deportes':
-      // Acción para la categoría Deportes
+      
       break;
     case 'Cerrar Sesión':
       // Acción para cerrar sesión

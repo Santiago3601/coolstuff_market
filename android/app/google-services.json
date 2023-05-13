@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "397750544437",
+    "project_id": "sign-in-8b325",
+    "storage_bucket": "sign-in-8b325.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397750544437:android:a55e69bdfbfac382f8a97c",
+        "android_client_info": {
+          "package_name": "com.example.flutter_login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "397750544437-jp1p4sejv935m7oqro5bnc2p1edu1liv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_login",
+            "certificate_hash": "e3935cf52ba5b43003ac1cb8970e63fe15c4b814"
+          }
+        },
+        {
+          "client_id": "397750544437-5rkffap4p14mcjek653dp02gdansunga.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvi0EiKo3ZfTg99YZRlyB8K8Vsr7M1_L0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "397750544437-5rkffap4p14mcjek653dp02gdansunga.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "397750544437-lgqt45f2saaksqh55k8e7l2gkek1np9d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.utadeo.coolstuffmarket.coolstuffMarket"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397750544437:android:4bf3dd070cb5ba75f8a97c",
+        "android_client_info": {
+          "package_name": "com.utadeo.coolstuffmarket.coolstuff_market"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "397750544437-5rkffap4p14mcjek653dp02gdansunga.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvi0EiKo3ZfTg99YZRlyB8K8Vsr7M1_L0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "397750544437-5rkffap4p14mcjek653dp02gdansunga.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "397750544437-lgqt45f2saaksqh55k8e7l2gkek1np9d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.utadeo.coolstuffmarket.coolstuffMarket"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

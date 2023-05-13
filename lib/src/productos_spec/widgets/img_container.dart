@@ -12,28 +12,6 @@ class ImageContainer extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        Column(
-          children: [
-            Image.asset(
-              'assets/images/productos/cafe1.png',
-              height: 100,
-              width: 100,
-              fit: BoxFit.cover,
-            ),
-            Image.asset(
-              'assets/images/productos/cafe1.png',
-              height: 100,
-              width: 100,
-              fit: BoxFit.cover,
-            ),
-            Image.asset(
-              'assets/images/productos/cafe1.png',
-              height: 100,
-              width: 100,
-              fit: BoxFit.cover,
-            ),
-          ],
-        ),
       ],
     );
   }

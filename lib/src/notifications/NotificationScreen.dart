@@ -16,7 +16,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
     NotificationItem(
         title: '10 personas',
         description: 'Están interesadas en contactarte para obtener más información sobre este producto',
-        imagePath: 'assets/images/productos/cafe2.png'), // Cambiar ruta de la imagen aquí
+        imagePath: 'assets/images/productos/cafe2.jpg'), // Cambiar ruta de la imagen aquí
     NotificationItem(
         title: '¿Aún estás vendiendo este producto?',
         description: 'Verifica si aún estás vendiendo este producto para mantenerlo al día',

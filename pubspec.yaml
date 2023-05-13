@@ -8,7 +8,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.2 <3.0.0'
+  sdk: '>=2.19.0 <4.0.0'
 
 
 
@@ -30,6 +30,10 @@ dependencies:
   firebase_core: ^2.8.0
   firebase_auth: ^4.3.0
   get_storage: ^2.0.3
+  image_picker: ^0.8.7+4
+  firebase_storage: ^11.1.1
+  fluttertoast: ^8.2.1
+
 
 dev_dependencies:
   flutter_test:
@@ -63,4 +67,4 @@ flutter:
     - assets/images/whatsapp-icon.png
     - assets/images/producto1.png
     - assets/images/productos/
-    - assets/images/profile/mujer1.jpg
+    - assets/images/profile/

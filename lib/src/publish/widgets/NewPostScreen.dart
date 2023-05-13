@@ -1,11 +1,28 @@
+import 'dart:io';
+
+import 'package:coolstuff_market/src/services/upload_image.dart';
 import 'package:flutter/material.dart';
+import '../../services/select_image.dart';
 import 'buildTextField.dart';
 import '../../productos_main/dashb.dart';
+import 'package:get/get.dart';
+import '../../features/authentication/controllers/publicar_producto_cont.dart';
+import 'package:coolstuff_market/src/dto/producto.dart';
 
-class NewPostScreen extends StatelessWidget {
-  List<String> categoriasList= ['Electrónicos', 'Ropa', 'Hogar', 'Deportes'];
-List<String> estadosList = ['Nuevo', 'Usado', 'Reacondicionado'];
+class NewPostScreen extends StatefulWidget {
+  @override
+  State<NewPostScreen> createState() => _NewPostScreenState();
+}
+
+class _NewPostScreenState extends State<NewPostScreen> {
+  List<String> categoriasList = ['Electrónicos', 'Ropa', 'Hogar', 'Deportes'];
+  List<String> estadosList = ['Nuevo', 'Usado', 'Reacondicionado'];
+  File? imagen_to_upload;
+
   Widget build(BuildContext context) {
+    final controller = Get.put(PublicarProducto());
+    print('item seleccionado ${controller.categoria}');
+    print('item Seleccionado $controller.estado');
     return Padding(
       padding: EdgeInsets.all(16),
       child: Column(
@@ -35,54 +52,60 @@ List<String> estadosList = ['Nuevo', 'Usado', 'Reacondicionado'];
           SizedBox(height: 10),
           buildTextField('Título'),
           buildTextField('Precio'),
-buildDropdownTextField('Categoría', categoriasList, (value) {
-  // Hacer algo con el valor seleccionado
-}),
-
-buildDropdownTextField('Estado', estadosList, (value) {
-  // Hacer algo con el valor seleccionado
-}),
+          buildDropdownTextField('Categoría', categoriasList, (value) {
+            setState(() {
+              controller.categoria = categoriasList.indexOf(value!) + 1;
+            });
+            // Hacer algo con el valor seleccionado
+          }),
+          buildDropdownTextField('Estado', estadosList, (value) {
+            setState(() {
+              controller.estado = estadosList.indexOf(value!) + 1;
+            });
+            // Hacer algo con el valor seleccionado
+          }),
           buildTextField('Descripción'),
           SizedBox(height: 16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  print('abre camara');
-                },
-                child: Container(
-                  width: MediaQuery.of(context).size.width - 32,
-                  height: 120,
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 211, 211, 211),
-                    border: Border.all(color: Color.fromRGBO(172, 172, 172, 1)),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.camera_alt,
-                        size: 45,
-                        color:
-                            Color.fromRGBO(30, 144, 255, 1), // Color azul rey
-                      ),
-                      Text(
-                        'Agrega Fotos',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color:
-                              Color.fromRGBO(30, 144, 255, 1), // Color azul rey
-                        ),
-                      ),
-                    ],
+          SizedBox(height: 5),
+          Center(
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: SizedBox(
+                width: 300,
+                height: 40,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    final imagen = await getImage();
+                    setState(() {
+                      imagen_to_upload = File(imagen!.path);
+                    });
+                  },
+                  child: Text('Seleccionar imagen'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Color.fromARGB(255, 98, 105, 98),
                   ),
                 ),
-              )
-            ],
+              ),
+            ),
+          ),
+          SizedBox(height: 5),
+          Center(
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: SizedBox(
+                width: 300,
+                height: 40,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    //...
+                  },
+                  child: Text('Subir imagen'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Color.fromARGB(255, 98, 105, 98),
+                  ),
+                ),
+              ),
+            ),
           ),
           SizedBox(height: 16),
           Row(
@@ -104,8 +127,22 @@ buildDropdownTextField('Estado', estadosList, (value) {
                 ),
               ),
               ElevatedButton(
-                onPressed: () {
-                  // Acción para publicar
+                onPressed: () async {
+                  Producto producto = Producto.noId(
+                    controller.titulo.text.trim(),
+                    int.parse(controller.precio.text.trim()),
+                    controller.categoria,
+                    controller.estado,
+                    controller.descripcion.text.trim(),
+                    1, //ID del vendedor actual
+                    "imagen.jpg", // ruta de la imagen seleccionada
+                    1, // estado del producto
+                  );
+                  await controller.publicarProductoApi(producto);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const dashb()),
+                  );
                 },
                 child: Text(
                   'Publicar',
@@ -115,7 +152,6 @@ buildDropdownTextField('Estado', estadosList, (value) {
                   primary: Colors.green,
                 ),
               ),
-              
             ],
           ),
         ],

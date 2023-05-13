@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:coolstuff_market/src/constants/images.dart';
 import 'package:coolstuff_market/src/constants/sizes.dart';
 import 'package:coolstuff_market/src/constants/text.dart';
@@ -7,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../constants/colors.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
 import '../../../authentication/screens/login/login_screen.dart';
 
@@ -58,6 +61,28 @@ class WelcomeScreen extends StatelessWidget {
                                 builder: (context) => const LoginScreen()),
                           );
                         },
+/*
+*
+
+                        onPressed: () async{
+                          final json = '[ { "NOMBRE": "Juan Perez2", "TELEFONO": 123, "DIRECCION": "Calle 123", "CIUDAD": "Bogotá", "FECHA_NACIMIENTO": "1990-01-01", "EMAIL": "juan.perez@example.com", "CONTRASENA": "password123", "IMAGEN": "imagen.jpg" } ]';
+                          var client = http.Client();
+                          try {
+                            var response = await client.post(
+                                Uri.parse("https://g20205610b4f23c-n095xjpjzyja68aa.adb.us-ashburn-1.oraclecloudapps.com/ords/cool_stuft_marketplace/user/register"),
+                                body: json);
+                            var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
+                            var uri = Uri.parse(decodedResponse['uri'] as String);
+                            print(await client.get(uri));
+
+                          } finally {
+                            client.close();
+                          }
+                        }
+
+*
+*
+* **/
                         child: Text(tLogin.toUpperCase()),
                       ),
                     ),
